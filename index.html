@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+
+<meta charset="UTF-8">
+
+
+<meta name="viewport"
+content="width=device-width,
+initial-scale=1,
+viewport-fit=cover">
+
+
+<title>
+Muscle Journey V3
+</title>
+
+
+<meta name="theme-color"
+content="#007AFF">
+
+
+
+<!-- PWA -->
+
+<link rel="manifest"
+href="manifest.json">
+
+
+<link rel="apple-touch-icon"
+href="assets/icon-192.png">
+
+
+
+<!-- CSS -->
+
+<link rel="stylesheet"
+href="css/style.css">
+
+
+</head>
+
+
+
+<body>
+
+
+
+<div class="app">
+
+
+
+
+
+<!-- ===================
+顶部成长主页
+=================== -->
+
+
+<section class="card hero">
+
+
+<div class="logo">
+
+🦾 Muscle Journey
+
+</div>
+
+
+
+<div class="subtitle">
+
+Personal Muscle Growth System
+
+</div>
+
+
+
+
+<div class="level">
+
+
+Lv.
+
+<span id="level">
+
+1
+
+</span>
+
+
+&nbsp;
+
+肌肉建设者
+
+
+</div>
+
+
+
+
+
+
+
+<div class="weight-display">
+
+
+<span id="currentWeight">
+
+64.0
+
+</span>
+
+
+<small>
+
+kg
+
+</small>
+
+
+</div>
+
+
+
+
+<div class="goal">
+
+
+目标体重：
+
+75kg
+
+
+</div>
+
+
+
+
+
+<div class="progress">
+
+
+<div id="goalProgress">
+
+</div>
+
+
+</div>
+
+
+
+
+<div class="progress-info">
+
+
+距离目标：
+
+<span id="remainWeight">
+
+11
+
+</span>
+
+kg
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="stats">
+
+
+
+<div>
+
+
+🔥
+
+
+<strong id="streak">
+
+0
+
+</strong>
+
+
+<p>
+
+连续训练
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+<div>
+
+
+⭐
+
+
+<strong id="xp">
+
+0
+
+</strong>
+
+
+<p>
+
+经验值
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+<div>
+
+
+💪
+
+
+<strong id="workouts">
+
+0
+
+</strong>
+
+
+<p>
+
+训练次数
+
+</p>
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+
+<!-- 今日训练 -->
+
+
+<section class="card">
+
+
+<div class="section-header">
+
+
+<h2>
+
+🎯 今日训练
+
+</h2>
+
+
+<span>
+
+DAY 01
+
+</span>
+
+
+</div>
+
+
+
+
+
+<div class="workout-box">
+
+
+<h3>
+
+上肢增肌 A
+
+</h3>
+
+
+
+<ul>
+
+
+<li>
+哑铃卧推 4 × 12
+</li>
+
+
+<li>
+单臂哑铃划船 4 × 12
+</li>
+
+
+<li>
+哑铃肩推 4 × 10
+</li>
+
+
+<li>
+侧平举 4 × 15
+</li>
+
+
+</ul>
+
+
+</div>
+
+
+
+
+<button onclick="completeWorkout()">
+
+完成训练
+
++50 XP
+
+</button>
+
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- 体重 -->
+
+
+<section class="card">
+
+
+<h2>
+
+⚖️ 体重成长
+
+</h2>
+
+
+
+
+<div class="input-area">
+
+
+<input
+
+id="weightInput"
+
+type="number"
+
+placeholder="输入今日体重">
+
+
+<button onclick="saveWeight()">
+
+记录
+
+</button>
+
+
+</div>
+
+
+
+
+
+<div id="weightHistory">
+
+暂无记录
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+
+<!-- 营养 -->
+
+
+<section class="card">
+
+
+<h2>
+
+🍚 今日营养
+
+</h2>
+
+
+
+
+<div class="nutrition-item">
+
+
+<div>
+
+蛋白质
+
+<span>
+
+130g
+
+</span>
+
+</div>
+
+
+<div class="nutrition-bar">
+
+
+<div id="proteinBar">
+
+</div>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+<div class="nutrition-item">
+
+
+<div>
+
+热量
+
+<span>
+
+2800 kcal
+
+</span>
+
+</div>
+
+
+<div class="nutrition-bar">
+
+
+<div id="calorieBar">
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- 成就 -->
+
+
+<section class="card">
+
+
+<h2>
+
+🏆 成就系统
+
+</h2>
+
+
+
+<div id="achievementList">
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+<!-- 底部导航 -->
+
+
+<nav class="tabbar">
+
+
+<div class="active">
+
+🏠
+
+<br>
+
+首页
+
+</div>
+
+
+
+<div>
+
+💪
+
+<br>
+
+训练
+
+</div>
+
+
+
+
+<div>
+
+📈
+
+<br>
+
+成长
+
+</div>
+
+
+
+
+<div>
+
+🏆
+
+<br>
+
+成就
+
+</div>
+
+
+
+</nav>
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- JS -->
+
+<script src="js/storage.js"></script>
+
+<script src="js/workout.js"></script>
+
+<script src="js/weight.js"></script>
+
+<script src="js/nutrition.js"></script>
+
+<script src="js/achievement.js"></script>
+
+<script src="js/app.js"></script>
+
+
+
+
+
+<script>
+
+
+// 注册PWA
+
+
+if(
+"serviceWorker" in navigator
+){
+
+
+navigator.serviceWorker.register(
+
+"service-worker.js"
+
+);
+
+
+}
+
+
+</script>
+
+
+
+
+</body>
+
+
+</html>
